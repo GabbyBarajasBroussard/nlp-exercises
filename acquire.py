@@ -9,7 +9,17 @@ import numpy as np
 from requests import get
 from bs4 import BeautifulSoup
 import os
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+def make_soup(url):
+    '''
+    The function takes in a url and requests and parses HTML
+    returning a soup object.
+    '''
+    headers = {'User-Agent': 'Codeup Data Science'} 
+    response = get(url, headers=headers)
+    soup = BeautifulSoup(response.text, 'html.parser')
+    return soup
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 def get_blog_articles(urls, cached=False):
     '''
     This function takes in a list of blog urls and a parameter
@@ -52,7 +62,7 @@ def get_blog_articles(urls, cached=False):
         df.to_json('big_blogs.json')
     
     return df
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 def get_news_articles(cached=False):
     '''
    When cached == False, the function does a fresh scrape of inshort pages with topics 
