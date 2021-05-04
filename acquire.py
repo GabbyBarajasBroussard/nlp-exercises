@@ -20,6 +20,15 @@ def make_soup(url):
     soup = BeautifulSoup(response.text, 'html.parser')
     return soup
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+urls = ['https://codeup.com/codeups-data-science-career-accelerator-is-here/',
+        'https://codeup.com/data-science-myths/',
+        'https://codeup.com/data-science-vs-data-analytics-whats-the-difference/',
+        'https://codeup.com/10-tips-to-crush-it-at-the-sa-tech-job-fair/',
+        'https://codeup.com/competitor-bootcamps-are-closing-is-the-model-in-danger/']
+
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 def get_blog_articles(urls, cached=False):
     '''
     This function takes in a list of blog urls and a parameter
@@ -29,7 +38,7 @@ def get_blog_articles(urls, cached=False):
     If cached == True, the function returns a df from the json file.
     '''
     if cached == True:
-        df = pd.read_json('big_blogs.json')
+        df = pd.read_json('codeup_blogs.json')
         
     # cached == False completes a fresh scrape for df     
     else:
@@ -59,11 +68,21 @@ def get_blog_articles(urls, cached=False):
         df = pd.DataFrame(articles)
 
         # Write df to a json file for faster access
-        df.to_json('big_blogs.json')
+        df.to_json('codeup_blogs.json')
     
     return df
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-def get_news_articles(cached=False):
+
+urls = ['https://www.reuters.com/world/india/india-take-back-illegal-migrants-uk-return-visas-young-workers-2021-05-04/?utm_campaign=fullarticle&utm_medium=referral&utm_source=inshorts', 
+        'https://www.businessinsider.in/stock-market/news/an-anonymous-crypto-advocate-projected-messages-championing-bitcoin-on-the-walls-of-the-bank-of-england-and-the-uk-parliament/amp_articleshow/82386813.cms?utm_campaign=fullarticle&utm_medium=referral&utm_source=inshorts',
+
+        'https://www.businessinsider.in/stock-market/news/much-wow-dogecoin-jumps-26-to-record-high-after-etoro-exchange-adds-the-token-for-its-20-million-users/amp_articleshow/82388830.cms?utm_campaign=fullarticle&utm_medium=referral&utm_source=inshorts',
+        'https://techcrunch.com/2021/05/04/twitter-acquires-distraction-free-reading-service-scroll-to-beef-up-its-subscription-product/amp/?utm_campaign=fullarticle&utm_medium=referral&utm_source=inshorts','https://yourstory.com/2021/05/accenture-pledges-25-million-dollar-covid19-india/amp?utm_campaign=fullarticle&utm_medium=referral&utm_source=inshorts']
+
+# news = get_bfp_news_articles(urls=urls, cached=False)
+
+
+def get_news_articles(urls_2, cached=False):
     '''
    When cached == False, the function does a fresh scrape of inshort pages with topics 
     business, sports, technology, and entertainment and writes the returned df to a json file.
@@ -71,7 +90,7 @@ def get_news_articles(cached=False):
     '''
     # option to read in a json file instead of scrape for df
     if cached == True:
-        df = pd.read_json('articles.json')
+        df = pd.read_json('news_articles.json')
         
     # cached == False completes a fresh scrape for df    
     else:
@@ -115,7 +134,7 @@ def get_news_articles(cached=False):
         df = pd.DataFrame(articles)
         
         # Write df to json file for future use
-        df.to_json('articles.json')
+        df.to_json('news_articles.json')
     
     return df
 
