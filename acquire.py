@@ -73,7 +73,7 @@ def get_blog_articles(urls, cached=False):
     return df
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-urls = ['https://www.reuters.com/world/india/india-take-back-illegal-migrants-uk-return-visas-young-workers-2021-05-04/?utm_campaign=fullarticle&utm_medium=referral&utm_source=inshorts', 
+urls_2 = ['https://www.reuters.com/world/india/india-take-back-illegal-migrants-uk-return-visas-young-workers-2021-05-04/?utm_campaign=fullarticle&utm_medium=referral&utm_source=inshorts', 
         'https://www.businessinsider.in/stock-market/news/an-anonymous-crypto-advocate-projected-messages-championing-bitcoin-on-the-walls-of-the-bank-of-england-and-the-uk-parliament/amp_articleshow/82386813.cms?utm_campaign=fullarticle&utm_medium=referral&utm_source=inshorts',
 
         'https://www.businessinsider.in/stock-market/news/much-wow-dogecoin-jumps-26-to-record-high-after-etoro-exchange-adds-the-token-for-its-20-million-users/amp_articleshow/82388830.cms?utm_campaign=fullarticle&utm_medium=referral&utm_source=inshorts',
@@ -82,7 +82,7 @@ urls = ['https://www.reuters.com/world/india/india-take-back-illegal-migrants-uk
 # news = get_bfp_news_articles(urls=urls, cached=False)
 
 
-def get_news_articles(urls_2, cached=False):
+def get_news_articles(cached=False):
     '''
    When cached == False, the function does a fresh scrape of inshort pages with topics 
     business, sports, technology, and entertainment and writes the returned df to a json file.
